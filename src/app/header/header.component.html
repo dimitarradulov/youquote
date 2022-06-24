@@ -1,0 +1,42 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container">
+    <a class="navbar-brand fw-bold" routerLink="/">youQuote</a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      (click)="isNavbarCollapsed = !isNavbarCollapsed"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNavDropdown"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div
+      class="collapse navbar-collapse"
+      [ngClass]="{ show: isNavbarCollapsed }"
+      id="navbarNavDropdown"
+    >
+      <ul class="navbar-nav ms-auto gap-lg-4">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/quotes" routerLinkActive="active"
+            >All Quotes</a
+          >
+        </li>
+        <li class="nav-item" *ngIf="!isAuth">
+          <a class="nav-link" routerLink="/sign-in" routerLinkActive="active"
+            >Sign In</a
+          >
+        </li>
+        <li class="nav-item" *ngIf="isAuth">
+          <a class="nav-link" routerLink="/my-quotes" routerLinkActive="active"
+            >My Quotes</a
+          >
+        </li>
+        <li class="nav-item" *ngIf="isAuth">
+          <a class="nav-link" routerLink="/add-quote" routerLinkActive="active"
+            >Add Quote</a
+          >
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

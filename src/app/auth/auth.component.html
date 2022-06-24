@@ -1,0 +1,46 @@
+<h2 class="h3 fw-bold mb-3">{{ isLogin ? "Login" : "Sign Up" }}</h2>
+<form #authForm="ngForm" (submit)="onFormSubmit(authForm)">
+  <div class="mb-3">
+    <label for="email" class="form-label">Email address</label>
+    <input
+      type="email"
+      class="form-control"
+      id="email"
+      name="email"
+      ngModel
+      required
+      email
+    />
+  </div>
+  <div class="mb-3">
+    <label for="password" class="form-label">Password</label>
+    <input
+      type="password"
+      class="form-control"
+      id="password"
+      name="password"
+      ngModel
+      required
+      minlength="6"
+    />
+  </div>
+  <div class="mb-3" *ngIf="!isLogin">
+    <label for="rePassword" class="form-label">Confirm Password</label>
+    <input
+      type="password"
+      class="form-control"
+      id="rePassword"
+      name="rePassword"
+      ngModel
+      required
+      minlength="6"
+      [pattern]="authForm.value.password"
+    />
+  </div>
+  <button type="submit" class="btn btn-dark me-3">
+    {{ isLogin ? "Login" : "Sign Up" }}
+  </button>
+  <button type="button" class="btn btn-dark" (click)="switchAuthMode()">
+    {{ isLogin ? "Switch To Sign Up" : "Switch To Login" }}
+  </button>
+</form>

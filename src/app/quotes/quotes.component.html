@@ -1,0 +1,7 @@
+<ul class="list-unstyled" *ngIf="!isLoading && !error">
+  <li *ngFor="let quote of quotes; let i = index" class="mb-4">
+    <app-single-quote [quote]="quote" [quoteNum]="i + 1"></app-single-quote>
+  </li>
+</ul>
+<app-loading-spinner *ngIf="isLoading && !error"></app-loading-spinner>
+<app-error *ngIf="error && !isLoading" [error]="error"></app-error>
