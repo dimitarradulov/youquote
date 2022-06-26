@@ -1,4 +1,5 @@
 <h2 class="h3 fw-bold mb-3">{{ isLogin ? "Login" : "Sign Up" }}</h2>
+<app-error *ngIf="error" [error]="error"></app-error>
 <form #authForm="ngForm" (submit)="onFormSubmit(authForm)">
   <div class="mb-3">
     <label for="email" class="form-label">Email address</label>
