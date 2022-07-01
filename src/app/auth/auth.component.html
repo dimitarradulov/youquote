@@ -1,4 +1,4 @@
-<h2 class="h3 fw-bold mb-3">{{ isLogin ? "Login" : "Sign Up" }}</h2>
+<h2 class="h3 fw-bold mb-4">{{ isLogin ? "Login" : "Sign Up" }}</h2>
 <app-error *ngIf="error" [error]="error"></app-error>
 <form #authForm="ngForm" (submit)="onFormSubmit(authForm)">
   <div class="mb-3">
@@ -38,10 +38,16 @@
       [pattern]="authForm.value.password"
     />
   </div>
-  <button type="submit" class="btn btn-dark me-3" [disabled]="!authForm.valid">
-    {{ isLogin ? "Login" : "Sign Up" }}
-  </button>
-  <button type="button" class="btn btn-dark" (click)="switchAuthMode()">
-    {{ isLogin ? "Switch To Sign Up" : "Switch To Login" }}
-  </button>
+  <div class="mt-4">
+    <button
+      type="submit"
+      class="btn btn-dark me-3"
+      [disabled]="!authForm.valid"
+    >
+      {{ isLogin ? "Login" : "Sign Up" }}
+    </button>
+    <button type="button" class="btn btn-dark" (click)="switchAuthMode()">
+      {{ isLogin ? "Switch To Sign Up" : "Switch To Login" }}
+    </button>
+  </div>
 </form>
