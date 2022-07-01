@@ -12,8 +12,7 @@ import { AuthResponseData, AuthService } from './auth.service';
   styleUrls: ['./auth.component.scss'],
 })
 export class AuthComponent implements OnInit {
-  private authObs: Observable<AuthResponseData>;
-  isLogin = false;
+  isLogin = true;
   error = null;
 
   constructor(private authService: AuthService, private router: Router) {}
@@ -27,26 +26,18 @@ export class AuthComponent implements OnInit {
   onFormSubmit(form: NgForm) {
     const { email, password } = form.value;
 
+    let authObs: Observable<AuthResponseData>;
+
     this.error = null;
 
     if (this.isLogin) {
-      this.authObs = this.authService.signIn(email, password);
+      authObs = this.authService.signIn(email, password);
     } else {
-      this.authObs = this.authService.signUp(email, password);
+      authObs = this.authService.signUp(email, password);
     }
 
-    this.authObs.subscribe({
+    authObs.subscribe({
       next: (userData) => {
-        const { email, idToken, expiresIn, localId } = userData;
-
-        const tokenExpirationDate = new Date(new Date().getTime() + +expiresIn);
-
-        const newUser = new User(email, localId, idToken, tokenExpirationDate);
-
-        this.authService.user.next(newUser);
-
-        this.authService.saveUser(newUser);
-
         this.router.navigate(['/quotes']);
       },
       error: (err) => {
