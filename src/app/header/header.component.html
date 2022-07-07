@@ -1,51 +1,65 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <div class="container">
-    <a class="navbar-brand fw-bold" routerLink="/">youQuote</a>
+<header
+  class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom"
+>
+  <a
+    routerLink="/"
+    class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none"
+  >
+    <img
+      src="../../assets/logo-icon.svg"
+      class="bi me-2"
+      alt="logo icon"
+      style="width: 40px; height: 32px"
+    />
+
+    <span class="fs-5">youQuote</span>
+  </a>
+
+  <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+    <li>
+      <a
+        routerLink="/quotes"
+        routerLinkActive="fw-bold"
+        class="nav-link px-2 link-dark"
+        >All Quotes</a
+      >
+    </li>
+    <li>
+      <a
+        *ngIf="isAuth"
+        routerLink="/my-quotes"
+        routerLinkActive="fw-bold"
+        class="nav-link px-2 link-dark"
+        >My Quotes</a
+      >
+    </li>
+  </ul>
+
+  <div class="col-md-3 text-end">
     <button
-      class="navbar-toggler"
+      routerLink="/add-quote"
+      routerLinkActive="active"
+      *ngIf="isAuth"
       type="button"
-      (click)="isNavbarCollapsed = !isNavbarCollapsed"
-      data-bs-toggle="collapse"
-      data-bs-target="#navbarNavDropdown"
+      class="btn btn-outline-dark me-2"
     >
-      <span class="navbar-toggler-icon"></span>
+      Add Quote
     </button>
-    <div
-      class="collapse navbar-collapse"
-      [ngClass]="{ show: isNavbarCollapsed }"
-      id="navbarNavDropdown"
+    <button
+      routerLink="/sign-in"
+      *ngIf="!isAuth"
+      type="button"
+      class="btn btn-dark"
     >
-      <ul class="navbar-nav ms-auto gap-lg-4">
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/quotes" routerLinkActive="active"
-            >All Quotes</a
-          >
-        </li>
-        <li class="nav-item" *ngIf="!isAuth">
-          <a class="nav-link" routerLink="/sign-in" routerLinkActive="active"
-            >Sign In</a
-          >
-        </li>
-        <li class="nav-item" *ngIf="isAuth">
-          <a class="nav-link" routerLink="/my-quotes" routerLinkActive="active"
-            >My Quotes</a
-          >
-        </li>
-        <li class="nav-item" *ngIf="isAuth">
-          <a class="nav-link" routerLink="/add-quote" routerLinkActive="active"
-            >Add Quote</a
-          >
-        </li>
-        <li class="nav-item" *ngIf="isAuth">
-          <a
-            class="nav-link"
-            routerLinkActive="active"
-            style="cursor: pointer"
-            (click)="onLogout()"
-            >Logout</a
-          >
-        </li>
-      </ul>
-    </div>
+      Sign In
+    </button>
+    <button
+      *ngIf="isAuth"
+      type="button"
+      class="btn btn-dark"
+      (click)="onLogout()"
+    >
+      Logout
+    </button>
   </div>
-</nav>
+</header>

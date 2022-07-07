@@ -9,7 +9,6 @@ import { Quote } from '../quote.model';
 })
 export class SingleQuoteComponent implements OnInit {
   @Input() quote: Quote;
-  @Input() quoteNum: number;
 
   constructor() {}
 

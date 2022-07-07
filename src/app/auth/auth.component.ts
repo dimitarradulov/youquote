@@ -3,8 +3,8 @@ import { NgForm } from '@angular/forms';
 import { Observable } from 'rxjs';
 
 import { Router } from '@angular/router';
-import { User } from './user.model';
 import { AuthResponseData, AuthService } from './auth.service';
+import { LoadingService } from '../shared/loading-spinner/loading.service';
 
 @Component({
   selector: 'app-auth',
@@ -15,7 +15,11 @@ export class AuthComponent implements OnInit {
   isLogin = true;
   error = null;
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    public loadingService: LoadingService
+  ) {}
 
   ngOnInit(): void {}
 
@@ -26,7 +30,7 @@ export class AuthComponent implements OnInit {
   onFormSubmit(form: NgForm) {
     const { email, password } = form.value;
 
-    let authObs: Observable<AuthResponseData>;
+    let authObs: Observable<any>;
 
     this.error = null;
 

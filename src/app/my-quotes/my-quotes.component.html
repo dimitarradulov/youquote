@@ -1,1 +1,26 @@
-<p>my-quotes works!</p>
+<ul
+  *ngIf="!(loadingService.isLoading | async); else loading"
+  class="list-unstyled"
+>
+  <li *ngFor="let quote of quotes" class="mb-4">
+    <app-single-quote [quote]="quote">
+      <div class="float-end">
+        <button
+          class="btn btn-sm btn-outline-warning me-2"
+          [routerLink]="['./', quote.id, 'edit']"
+        >
+          Edit
+        </button>
+        <button
+          class="btn btn-sm btn-outline-danger"
+          (click)="onDelete(quote?.id ?? null)"
+        >
+          Delete
+        </button>
+      </div>
+    </app-single-quote>
+  </li>
+</ul>
+<ng-template #loading>
+  <app-loading-spinner></app-loading-spinner>
+</ng-template>

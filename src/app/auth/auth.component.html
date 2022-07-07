@@ -38,7 +38,7 @@
       [pattern]="authForm.value.password"
     />
   </div>
-  <div class="mt-4">
+  <div *ngIf="!(loadingService.isLoading | async); else loading" class="mt-4">
     <button
       type="submit"
       class="btn btn-dark me-3"
@@ -50,4 +50,7 @@
       {{ isLogin ? "Switch To Sign Up" : "Switch To Login" }}
     </button>
   </div>
+  <ng-template #loading>
+    <app-loading-spinner></app-loading-spinner>
+  </ng-template>
 </form>

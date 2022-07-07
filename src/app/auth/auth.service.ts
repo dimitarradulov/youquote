@@ -1,7 +1,7 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { asyncScheduler, BehaviorSubject, throwError } from 'rxjs';
-import { catchError, tap } from 'rxjs/operators';
+import { catchError, tap, exhaustMap } from 'rxjs/operators';
 
 import { environment } from 'src/environments/environment';
 import { User } from './user.model';
@@ -41,6 +41,15 @@ export class AuthService {
         catchError(this.handleError),
         tap((userData) => {
           this.handleAuth(userData);
+        }),
+        exhaustMap((userData) => {
+          return this.http.post(
+            `${environment.baseUrl}/users/${userData.localId}.json`,
+            {
+              email: userData.email,
+              id: userData.localId,
+            }
+          );
         })
       );
   }

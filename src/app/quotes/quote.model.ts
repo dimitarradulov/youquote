@@ -1,3 +1,6 @@
-export class Quote {
-  constructor(public author: string, public content: string) {}
+export interface Quote {
+  author: string;
+  content: string;
+  id?: string;
+  uid?: string;
 }

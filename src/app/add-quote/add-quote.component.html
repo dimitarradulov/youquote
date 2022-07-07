@@ -1,1 +1,39 @@
-<p>add-quote works!</p>
+<h2 class="h3 fw-bold mb-4">Add a Quote</h2>
+<form #addQuoteForm="ngForm" (submit)="onFormSubmit(addQuoteForm)">
+  <div class="mb-3">
+    <label for="email" class="form-label">Author</label>
+    <input
+      type="text"
+      class="form-control"
+      id="author"
+      name="author"
+      ngModel
+      required
+      minlength="2"
+    />
+  </div>
+  <div class="mb-3">
+    <label for="quote" class="form-label">Content</label>
+    <textarea
+      id="content"
+      name="content"
+      class="form-control"
+      rows="5"
+      ngModel
+      required
+      minlength="20"
+    ></textarea>
+  </div>
+  <div *ngIf="!(loadingService.isLoading | async); else loading" class="mt-4">
+    <button
+      type="submit"
+      class="btn btn-dark me-3"
+      [disabled]="!addQuoteForm.valid"
+    >
+      Add Quote
+    </button>
+  </div>
+  <ng-template #loading>
+    <app-loading-spinner></app-loading-spinner>
+  </ng-template>
+</form>

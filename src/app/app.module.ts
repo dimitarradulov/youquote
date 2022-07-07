@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -13,6 +13,8 @@ import { MyQuotesComponent } from './my-quotes/my-quotes.component';
 import { AddQuoteComponent } from './add-quote/add-quote.component';
 import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
 import { ErrorComponent } from './shared/error/error.component';
+import { LoadingInterceptor } from './shared/loading-spinner/loading.interceptor';
+import { EditQuoteComponent } from './edit-quote/edit-quote.component';
 
 @NgModule({
   declarations: [
@@ -25,9 +27,16 @@ import { ErrorComponent } from './shared/error/error.component';
     AddQuoteComponent,
     LoadingSpinnerComponent,
     ErrorComponent,
+    EditQuoteComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: LoadingInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

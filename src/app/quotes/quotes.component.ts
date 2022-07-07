@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 
+import { LoadingService } from '../shared/loading-spinner/loading.service';
 import { Quote } from './quote.model';
 import { QuotesService } from './quotes.service';
 
@@ -12,23 +13,22 @@ import { QuotesService } from './quotes.service';
 export class QuotesComponent implements OnInit, OnDestroy {
   quotes: Quote[] = [];
   private quotesSub: Subscription;
-  isLoading = false;
   error = null;
 
-  constructor(private quotesService: QuotesService) {}
+  constructor(
+    private quotesService: QuotesService,
+    public loadingService: LoadingService
+  ) {}
 
   ngOnInit(): void {
-    this.isLoading = true;
     this.error = null;
     this.quotesSub = this.quotesService.getAllQuotes().subscribe({
       next: (quotesData) => {
         this.quotes = quotesData;
-        this.isLoading = false;
       },
       error: (err) => {
         console.error(err);
         this.error = err.message;
-        this.isLoading = false;
       },
     });
   }
