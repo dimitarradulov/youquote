@@ -13,7 +13,7 @@
       required
       email
     />
-    <p *ngIf="!email.valid && email.touched" class="text-danger">
+    <p *ngIf="!email.valid && email.touched" class="text-danger error-tooltip">
       Enter a valid email address!
     </p>
   </div>
@@ -29,7 +29,10 @@
       required
       minlength="6"
     />
-    <p *ngIf="!password.valid && password.touched" class="text-danger">
+    <p
+      *ngIf="!password.valid && password.touched"
+      class="text-danger error-tooltip"
+    >
       Enter a valid password (at least 6 characters)!
     </p>
   </div>
@@ -46,7 +49,10 @@
       minlength="6"
       [pattern]="authForm.value.password"
     />
-    <p *ngIf="!rePassword.valid && rePassword.touched" class="text-danger">
+    <p
+      *ngIf="!rePassword.valid && rePassword.touched"
+      class="text-danger error-tooltip"
+    >
       Password does not match or empty!
     </p>
   </div>
