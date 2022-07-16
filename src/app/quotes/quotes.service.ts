@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { BehaviorSubject, Subject } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { environment } from 'src/environments/environment';
@@ -12,8 +12,8 @@ import { Quote } from './quote.model';
   providedIn: 'root',
 })
 export class QuotesService {
-  quotes = new Subject<Quote[]>();
-  error = new BehaviorSubject<string | null>(null);
+  private userQuotes: Quote[] = [];
+  userQuotesChanges = new BehaviorSubject<Quote[]>([]);
 
   constructor(
     private http: HttpClient,
@@ -21,7 +21,7 @@ export class QuotesService {
     private authService: AuthService
   ) {}
 
-  getAllQuotes() {
+  getAll() {
     return this.http.get<Quote[]>(`${environment.baseUrl}/quotes.json`).pipe(
       map((quotes) => {
         return Object.entries(quotes).map((quoteData) => {
@@ -33,23 +33,29 @@ export class QuotesService {
     );
   }
 
-  getSingleQuote(quoteId: string) {
+  getOne(quoteId: string) {
     return this.http.get<Quote>(
       `${environment.baseUrl}/quotes/${quoteId}.json`
     );
   }
 
   getUserQuotes(userId: string) {
-    return this.http.get<Quote[]>(`${environment.baseUrl}/quotes.json`).pipe(
-      map((quotesObj) => {
-        return Object.entries(quotesObj)
-          .filter((quoteData) => quoteData[1].uid === userId)
-          .map((quoteTuple) => ({ id: quoteTuple[0], ...quoteTuple[1] }));
-      })
-    );
+    this.http
+      .get<Quote[]>(`${environment.baseUrl}/quotes.json`)
+      .pipe(
+        map((quotesObj) => {
+          return Object.entries(quotesObj)
+            .filter((quoteData) => quoteData[1].uid === userId)
+            .map((quoteTuple) => ({ id: quoteTuple[0], ...quoteTuple[1] }));
+        })
+      )
+      .subscribe((quotes) => {
+        this.userQuotes = quotes;
+        this.userQuotesChanges.next(quotes);
+      });
   }
 
-  postQuote(quote: Quote) {
+  create(quote: Quote) {
     const user = this.authService.user.getValue();
 
     this.http
@@ -58,14 +64,14 @@ export class QuotesService {
         uid: user?.id,
       })
       .subscribe({
-        next: (data) => {
+        next: () => {
           this.router.navigate(['/']);
         },
         error: (err) => console.error(err),
       });
   }
 
-  editQuote(quoteId: string, editedQuote: Quote) {
+  edit(quoteId: string, editedQuote: Quote) {
     this.http
       .put(`${environment.baseUrl}/quotes/${quoteId}.json`, editedQuote)
       .subscribe((_) => {
@@ -73,9 +79,15 @@ export class QuotesService {
       });
   }
 
-  deleteQuote(quoteId: string | null) {
+  delete(quoteId: string | null) {
     this.http
       .delete(`${environment.baseUrl}/quotes/${quoteId}.json`)
-      .subscribe();
+      .subscribe(() => {
+        const quoteIndex = this.userQuotes.findIndex(
+          (quote) => quote.id === quoteId
+        );
+        this.userQuotes.splice(quoteIndex, 1);
+        this.userQuotesChanges.next(this.userQuotes);
+      });
   }
 }
