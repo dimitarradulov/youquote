@@ -27,7 +27,7 @@ export class EditQuoteComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.error = null;
     this.quoteId = this.route.snapshot.params['quoteId'];
-    this.quoteSub = this.quotesService.getSingleQuote(this.quoteId).subscribe({
+    this.quoteSub = this.quotesService.getOne(this.quoteId).subscribe({
       next: (quoteData) => (this.quote = quoteData),
       error: (err) => {
         console.error(err);
@@ -37,7 +37,7 @@ export class EditQuoteComponent implements OnInit, OnDestroy {
   }
 
   onEdit(form: NgForm) {
-    this.quotesService.editQuote(this.quoteId, {
+    this.quotesService.edit(this.quoteId, {
       ...form.value,
       uid: this.quote.uid,
     });

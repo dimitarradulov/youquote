@@ -22,7 +22,7 @@ export class QuotesComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.error = null;
-    this.quotesSub = this.quotesService.getAllQuotes().subscribe({
+    this.quotesSub = this.quotesService.getAll().subscribe({
       next: (quotesData) => {
         this.quotes = quotesData;
       },

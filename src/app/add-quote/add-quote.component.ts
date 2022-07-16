@@ -18,6 +18,6 @@ export class AddQuoteComponent implements OnInit {
   ngOnInit(): void {}
 
   onFormSubmit(form: NgForm) {
-    this.quotesService.postQuote(form.value);
+    this.quotesService.create(form.value);
   }
 }
