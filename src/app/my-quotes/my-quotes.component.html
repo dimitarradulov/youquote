@@ -2,7 +2,10 @@
   *ngIf="!(loadingService.isLoading | async); else loading"
   class="list-unstyled"
 >
-  <li *ngFor="let quote of quotes" class="mb-4">
+  <li
+    *ngFor="let quote of quotesService.userQuotesChanges | async"
+    class="mb-4"
+  >
     <app-single-quote [quote]="quote">
       <div class="float-end">
         <button
@@ -13,7 +16,7 @@
         </button>
         <button
           class="btn btn-sm btn-outline-danger"
-          (click)="onDelete(quote?.id ?? null)"
+          (click)="quotesService.delete(quote.id!)"
         >
           Delete
         </button>
