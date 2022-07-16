@@ -8,10 +8,14 @@
       class="form-control"
       id="email"
       name="email"
+      #email="ngModel"
       ngModel
       required
       email
     />
+    <p *ngIf="!email.valid && email.touched" class="text-danger">
+      Enter a valid email address!
+    </p>
   </div>
   <div class="mb-3">
     <label for="password" class="form-label">Password</label>
@@ -20,10 +24,14 @@
       class="form-control"
       id="password"
       name="password"
+      #password="ngModel"
       ngModel
       required
       minlength="6"
     />
+    <p *ngIf="!password.valid && password.touched" class="text-danger">
+      Enter a valid password (at least 6 characters)!
+    </p>
   </div>
   <div class="mb-3" *ngIf="!isLogin">
     <label for="rePassword" class="form-label">Confirm Password</label>
@@ -32,11 +40,15 @@
       class="form-control"
       id="rePassword"
       name="rePassword"
+      #rePassword="ngModel"
       ngModel
       required
       minlength="6"
       [pattern]="authForm.value.password"
     />
+    <p *ngIf="!rePassword.valid && rePassword.touched" class="text-danger">
+      Password does not match or empty!
+    </p>
   </div>
   <div *ngIf="!(loadingService.isLoading | async); else loading" class="mt-4">
     <button
