@@ -3,7 +3,7 @@ import { NgForm } from '@angular/forms';
 import { Observable } from 'rxjs';
 
 import { Router } from '@angular/router';
-import { AuthResponseData, AuthService } from './auth.service';
+import { AuthService } from './auth.service';
 import { LoadingService } from '../shared/loading-spinner/loading.service';
 
 @Component({
@@ -41,7 +41,7 @@ export class AuthComponent implements OnInit {
     }
 
     authObs.subscribe({
-      next: (userData) => {
+      next: () => {
         this.router.navigate(['/quotes']);
       },
       error: (err) => {
