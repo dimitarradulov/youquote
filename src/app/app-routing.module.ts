@@ -9,8 +9,22 @@ import { MyQuotesComponent } from './my-quotes/my-quotes.component';
 import { QuotesComponent } from './quotes/quotes.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'quotes', pathMatch: 'full' },
-  { path: 'quotes', component: QuotesComponent },
+  {
+    path: '',
+    redirectTo: 'quotes',
+    pathMatch: 'full',
+  },
+  {
+    path: 'quotes',
+    component: QuotesComponent,
+    children: [
+      {
+        path: 'add',
+        component: AddQuoteComponent,
+        canActivate: [AuthGuard],
+      },
+    ],
+  },
   { path: 'sign-in', component: AuthComponent },
   { path: 'my-quotes', component: MyQuotesComponent, canActivate: [AuthGuard] },
   {
@@ -18,7 +32,6 @@ const routes: Routes = [
     component: EditQuoteComponent,
     canActivate: [AuthGuard],
   },
-  { path: 'add-quote', component: AddQuoteComponent, canActivate: [AuthGuard] },
 ];
 
 @NgModule({
