@@ -1,0 +1,22 @@
+<app-loading-spinner
+  *ngIf="!error && (loadingService.isLoading | async)"
+></app-loading-spinner>
+
+<app-error
+  *ngIf="error && !(loadingService.isLoading | async)"
+  [error]="error"
+></app-error>
+
+<div
+  *ngIf="!error && !(loadingService.isLoading | async)"
+  class="card shadow-sm"
+>
+  <div class="card-body">
+    <blockquote class="blockquote mb-0">
+      <p>{{ quote.content }}</p>
+      <footer class="blockquote-footer">
+        <cite title="Source Title">{{ quote.author }}</cite>
+      </footer>
+    </blockquote>
+  </div>
+</div>
