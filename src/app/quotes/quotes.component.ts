@@ -12,7 +12,7 @@ import { QuotesService } from './quotes.service';
 })
 export class QuotesComponent implements OnInit, OnDestroy {
   quotes: Quote[] = [];
-  private quotesSub: Subscription;
+  quotesSub: Subscription;
   error = null;
 
   constructor(
