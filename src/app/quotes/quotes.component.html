@@ -1,21 +1,22 @@
-<ng-container *ngIf="!outlet.isActivated">
-  <ul
-    class="list-unstyled"
-    *ngIf="!(loadingService.isLoading | async) && !error"
-  >
-    <li *ngFor="let quote of quotes; let i = index" class="mb-4">
-      <app-single-quote [quote]="quote">
-        <span>Quote #{{ i + 1 }}</span>
-      </app-single-quote>
-    </li>
-  </ul>
-  <app-loading-spinner
-    *ngIf="(loadingService.isLoading | async) && !error"
-  ></app-loading-spinner>
-  <app-error
-    *ngIf="error && !(loadingService.isLoading | async)"
-    [error]="error"
-  ></app-error>
-</ng-container>
-
-<router-outlet #outlet="outlet"></router-outlet>
+<ul class="list-unstyled" *ngIf="!(loadingService.isLoading | async) && !error">
+  <li *ngFor="let quote of quotes; let i = index" class="mb-4">
+    <app-single-quote [quote]="quote">
+      <div class="d-flex justify-content-between">
+        <span class="align-self-center">Quote #{{ i + 1 }}</span>
+        <button
+          class="btn btn-sm btn-outline-light"
+          [routerLink]="[quote.id, 'details']"
+        >
+          View Details
+        </button>
+      </div>
+    </app-single-quote>
+  </li>
+</ul>
+<app-loading-spinner
+  *ngIf="(loadingService.isLoading | async) && !error"
+></app-loading-spinner>
+<app-error
+  *ngIf="error && !(loadingService.isLoading | async)"
+  [error]="error"
+></app-error>
