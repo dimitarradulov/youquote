@@ -23,10 +23,6 @@ export class AuthService {
 
   constructor(private http: HttpClient) {}
 
-  saveUser(user: User) {
-    localStorage.setItem('user', JSON.stringify(user));
-  }
-
   signUp(email: string, password: string) {
     return this.http
       .post<AuthResponseData>(
@@ -96,7 +92,7 @@ export class AuthService {
       return;
     }
 
-    this.user.next(storedUser);
+    this.user.next(newUser);
 
     this.autoLogout(tokenExpirationDate.getTime() - new Date().getTime());
   }
@@ -148,5 +144,9 @@ export class AuthService {
     this.saveUser(newUser);
 
     this.autoLogout(tokenExpirationDate.getTime() - new Date().getTime());
+  }
+
+  private saveUser(user: User) {
+    localStorage.setItem('user', JSON.stringify(user));
   }
 }
