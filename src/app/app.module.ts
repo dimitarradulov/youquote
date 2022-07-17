@@ -15,6 +15,7 @@ import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinne
 import { ErrorComponent } from './shared/error/error.component';
 import { LoadingInterceptor } from './shared/loading-spinner/loading.interceptor';
 import { EditQuoteComponent } from './edit-quote/edit-quote.component';
+import { AuthInterceptor } from './auth/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,11 @@ import { EditQuoteComponent } from './edit-quote/edit-quote.component';
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true,
+    },
     {
       provide: HTTP_INTERCEPTORS,
       useClass: LoadingInterceptor,
