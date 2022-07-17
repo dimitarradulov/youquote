@@ -16,6 +16,8 @@ import { ErrorComponent } from './shared/error/error.component';
 import { LoadingInterceptor } from './shared/loading-spinner/loading.interceptor';
 import { EditQuoteComponent } from './edit-quote/edit-quote.component';
 import { AuthInterceptor } from './auth/auth.interceptor';
+import { QuoteDetailsComponent } from './quotes/quote-details/quote-details.component';
+import { TruncatePipe } from './shared/truncate.pipe';
 
 @NgModule({
   declarations: [
@@ -29,6 +31,8 @@ import { AuthInterceptor } from './auth/auth.interceptor';
     LoadingSpinnerComponent,
     ErrorComponent,
     EditQuoteComponent,
+    QuoteDetailsComponent,
+    TruncatePipe,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [
