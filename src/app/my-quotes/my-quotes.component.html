@@ -1,29 +1,36 @@
-<ul
-  *ngIf="!(loadingService.isLoading | async); else loading"
-  class="list-unstyled"
->
-  <li
-    *ngFor="let quote of quotesService.userQuotesChanges | async"
-    class="mb-4"
+<ng-container *ngIf="!(loadingService.isLoading | async); else loading">
+  <ul
+    *ngIf="(quotesService.userQuotesChanges | async)?.length; else noQuotes"
+    class="list-unstyled"
   >
-    <app-single-quote [quote]="quote">
-      <div class="float-end">
-        <button
-          class="btn btn-sm btn-outline-warning me-2"
-          [routerLink]="['./', quote.id, 'edit']"
-        >
-          Edit
-        </button>
-        <button
-          class="btn btn-sm btn-outline-danger"
-          (click)="quotesService.delete(quote.id!)"
-        >
-          Delete
-        </button>
-      </div>
-    </app-single-quote>
-  </li>
-</ul>
+    <li
+      *ngFor="let quote of quotesService.userQuotesChanges | async"
+      class="mb-4"
+    >
+      <app-single-quote [quote]="quote">
+        <div class="float-end">
+          <button
+            class="btn btn-sm btn-outline-warning me-2"
+            [routerLink]="['./', quote.id, 'edit']"
+          >
+            Edit
+          </button>
+          <button
+            class="btn btn-sm btn-outline-danger"
+            (click)="quotesService.delete(quote.id!)"
+          >
+            Delete
+          </button>
+        </div>
+      </app-single-quote>
+    </li>
+  </ul>
+
+  <ng-template #noQuotes>
+    <p class="text-center fs-4">You have no added quotes!</p>
+  </ng-template>
+</ng-container>
+
 <ng-template #loading>
   <app-loading-spinner></app-loading-spinner>
 </ng-template>
