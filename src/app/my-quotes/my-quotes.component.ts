@@ -38,8 +38,13 @@ export class MyQuotesComponent implements OnInit, OnDestroy {
   }
 
   openModal(modal: any, quoteId: string) {
-    this.modalService.open(modal).result.then((result) => {
-      if (result === 'yes') this.quotesService.delete(quoteId);
-    });
+    this.modalService.open(modal).result.then(
+      (result) => {
+        if (result === 'yes') this.quotesService.delete(quoteId);
+      },
+      (reason) => {
+        return null;
+      }
+    );
   }
 }
