@@ -11,7 +11,7 @@
           </button>
           <button
             class="btn btn-sm btn-outline-danger"
-            (click)="quotesService.delete(quote.id!)"
+            (click)="openModal(modal, quote.id!)"
           >
             Delete
           </button>
@@ -27,4 +27,24 @@
 
 <ng-template #loading>
   <app-loading-spinner></app-loading-spinner>
+</ng-template>
+
+<ng-template #modal let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Are you sure?</h4>
+    <button
+      type="button"
+      class="btn-close"
+      aria-label="Close"
+      (click)="d('Cross click')"
+    ></button>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="c('yes')">
+      Yes
+    </button>
+    <button type="button" class="btn btn-dark" (click)="d('Cross click')">
+      Cancel
+    </button>
+  </div>
 </ng-template>
