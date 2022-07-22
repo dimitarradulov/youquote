@@ -1,12 +1,6 @@
 <ng-container *ngIf="!(loadingService.isLoading | async); else loading">
-  <ul
-    *ngIf="(quotesService.userQuotesChanges | async)?.length; else noQuotes"
-    class="list-unstyled"
-  >
-    <li
-      *ngFor="let quote of quotesService.userQuotesChanges | async"
-      class="mb-4"
-    >
+  <ul *ngIf="userQuotes.length; else noQuotes" class="list-unstyled">
+    <li *ngFor="let quote of userQuotes" class="mb-4">
       <app-single-quote [quote]="quote">
         <div class="float-end">
           <button
