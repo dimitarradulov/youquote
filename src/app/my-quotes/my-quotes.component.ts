@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { User } from '../auth/user.model';
 import { AuthService } from '../auth/auth.service';
@@ -14,13 +15,12 @@ import { Subscription } from 'rxjs';
 })
 export class MyQuotesComponent implements OnInit, OnDestroy {
   userQuotes: Quote[] = [];
-  showConfirmModal = false;
-  confirmQuoteDelete = false;
   subsciption: Subscription;
 
   constructor(
+    private modalService: NgbModal,
     private authService: AuthService,
-    public quotesService: QuotesService,
+    private quotesService: QuotesService,
     public loadingService: LoadingService
   ) {}
 
@@ -37,7 +37,9 @@ export class MyQuotesComponent implements OnInit, OnDestroy {
     this.subsciption.unsubscribe();
   }
 
-  hideConfirmModal() {
-    this.showConfirmModal = false;
+  openModal(modal: any, quoteId: string) {
+    this.modalService.open(modal).result.then((result) => {
+      if (result === 'yes') this.quotesService.delete(quoteId);
+    });
   }
 }
