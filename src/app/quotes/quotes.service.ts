@@ -6,7 +6,7 @@ import { map } from 'rxjs/operators';
 
 import { environment } from 'src/environments/environment';
 import { AuthService } from '../auth/auth.service';
-import { Quote } from './quote.model';
+import { Quote } from '../shared/models/quote.model';
 
 @Injectable({
   providedIn: 'root',
@@ -24,6 +24,8 @@ export class QuotesService {
   getAll() {
     return this.http.get<Quote[]>(`${environment.baseUrl}/quotes.json`).pipe(
       map((quotes) => {
+        if (!quotes) return null;
+
         return Object.entries(quotes).map((quoteData) => {
           const id = quoteData[0];
           const data = quoteData[1];
@@ -72,11 +74,10 @@ export class QuotesService {
   }
 
   edit(quoteId: string, editedQuote: Quote) {
-    this.http
-      .put(`${environment.baseUrl}/quotes/${quoteId}.json`, editedQuote)
-      .subscribe((_) => {
-        this.router.navigate(['/my-quotes']);
-      });
+    return this.http.put(
+      `${environment.baseUrl}/quotes/${quoteId}.json`,
+      editedQuote
+    );
   }
 
   delete(quoteId: string | null) {
