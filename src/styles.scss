@@ -1,5 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 @import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;700&display=swap");
+@import "~bootstrap-icons/font/bootstrap-icons.css";
 
 body {
   font-family: "Nunito Sans", sans-serif;
@@ -20,4 +21,4 @@ textarea.ng-invalid.ng-touched {
 }
 
 /* Importing Bootstrap SCSS file. */
-@import '~bootstrap/scss/bootstrap';
+@import "~bootstrap/scss/bootstrap";
