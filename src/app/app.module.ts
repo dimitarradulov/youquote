@@ -19,6 +19,7 @@ import { EditQuoteComponent } from './edit-quote/edit-quote.component';
 import { AuthInterceptor } from './auth/auth.interceptor';
 import { QuoteDetailsComponent } from './quotes/quote-details/quote-details.component';
 import { TruncatePipe } from './shared/truncate.pipe';
+import { LikeComponent } from './quotes/quote-details/like/like.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { TruncatePipe } from './shared/truncate.pipe';
     EditQuoteComponent,
     QuoteDetailsComponent,
     TruncatePipe,
+    LikeComponent,
   ],
   imports: [
     BrowserModule,
