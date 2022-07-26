@@ -9,7 +9,7 @@
 
 <div
   *ngIf="!error && !(loadingService.isLoading | async)"
-  class="card shadow-sm"
+  class="card shadow-sm mb-2"
 >
   <div class="card-body">
     <blockquote class="blockquote mb-0">
@@ -19,4 +19,12 @@
       </footer>
     </blockquote>
   </div>
+  <div *ngIf="authService.user | async" class="card-footer">
+    <like [(liked)]="liked" (onLike)="onLikeHandler($event)"></like>
+  </div>
+</div>
+
+<div class="small">
+  <span class="fw-bold">{{ likes }} </span>
+  <span class="text-muted">Likes</span>
 </div>
