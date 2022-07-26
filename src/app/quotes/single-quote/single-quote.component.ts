@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 
-import { Quote } from '../quote.model';
+import { Quote } from '../../shared/models/quote.model';
 
 @Component({
   selector: 'app-single-quote',
