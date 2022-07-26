@@ -1,9 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 
-import { Quote } from '../quotes/quote.model';
+import { Quote } from '../shared/models/quote.model';
 import { QuotesService } from '../quotes/quotes.service';
 import { LoadingService } from '../shared/loading-spinner/loading.service';
 
@@ -21,7 +21,8 @@ export class EditQuoteComponent implements OnInit, OnDestroy {
   constructor(
     public loadingService: LoadingService,
     private quotesService: QuotesService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -37,10 +38,14 @@ export class EditQuoteComponent implements OnInit, OnDestroy {
   }
 
   onEdit(form: NgForm) {
-    this.quotesService.edit(this.quoteId, {
-      ...form.value,
-      uid: this.quote.uid,
-    });
+    this.quotesService
+      .edit(this.quoteId, {
+        ...form.value,
+        uid: this.quote.uid,
+      })
+      .subscribe(() => {
+        this.router.navigate(['/my-quotes']);
+      });
   }
 
   ngOnDestroy(): void {
