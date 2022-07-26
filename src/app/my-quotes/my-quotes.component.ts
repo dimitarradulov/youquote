@@ -5,7 +5,7 @@ import { User } from '../auth/user.model';
 import { AuthService } from '../auth/auth.service';
 import { QuotesService } from '../quotes/quotes.service';
 import { LoadingService } from '../shared/loading-spinner/loading.service';
-import { Quote } from '../quotes/quote.model';
+import { Quote } from '../shared/models/quote.model';
 import { Subscription } from 'rxjs';
 
 @Component({
