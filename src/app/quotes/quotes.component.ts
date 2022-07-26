@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 
 import { LoadingService } from '../shared/loading-spinner/loading.service';
-import { Quote } from './quote.model';
+import { Quote } from '../shared/models/quote.model';
 import { QuotesService } from './quotes.service';
 
 @Component({
@@ -11,7 +11,7 @@ import { QuotesService } from './quotes.service';
   styleUrls: ['./quotes.component.scss'],
 })
 export class QuotesComponent implements OnInit, OnDestroy {
-  quotes: Quote[] = [];
+  quotes: Quote[] | null = [];
   quotesSub: Subscription;
   error = null;
 

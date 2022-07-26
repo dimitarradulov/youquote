@@ -20,3 +20,5 @@
   *ngIf="error && !(loadingService.isLoading | async)"
   [error]="error"
 ></app-error>
+
+<h1 class="h5 text-center" *ngIf="!quotes">There are no quotes!</h1>
