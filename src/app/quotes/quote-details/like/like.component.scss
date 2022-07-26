@@ -1,0 +1,12 @@
+.like-text,
+.like-btn {
+  font-size: 0.875rem;
+}
+
+.like-btn {
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
