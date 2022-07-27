@@ -2,12 +2,12 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 
-import { User } from 'src/app/auth/user.model';
-import { Quote } from '../../shared/models/quote.model';
-import { AuthService } from 'src/app/auth/auth.service';
-import { LoadingService } from 'src/app/shared/loading-spinner/loading.service';
-import { QuotesService } from '../quotes.service';
-import { LikeService } from './like/like.service';
+import { User } from 'src/app/shared/models/user.model';
+import { Quote } from 'src/app/shared/models/quote.model';
+import { AuthService } from 'src/app/auth/services/auth.service';
+import { LoadingService } from 'src/app/shared/services/loading.service';
+import { QuotesService } from '../../services/quotes.service';
+import { LikeService } from '../../services/like.service';
 
 @Component({
   selector: 'app-quote-details',

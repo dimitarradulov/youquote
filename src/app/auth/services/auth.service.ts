@@ -4,7 +4,7 @@ import { asyncScheduler, BehaviorSubject, throwError } from 'rxjs';
 import { catchError, tap, exhaustMap } from 'rxjs/operators';
 
 import { environment } from 'src/environments/environment';
-import { User } from './user.model';
+import { User } from '../../shared/models/user.model';
 
 export interface AuthResponseData {
   idToken: string;

@@ -1,11 +1,11 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
-import { User } from '../auth/user.model';
-import { AuthService } from '../auth/auth.service';
-import { QuotesService } from '../quotes/quotes.service';
-import { LoadingService } from '../shared/loading-spinner/loading.service';
-import { Quote } from '../shared/models/quote.model';
+import { User } from '../../../shared/models/user.model';
+import { AuthService } from '../../../auth/services/auth.service';
+import { QuotesService } from '../../services/quotes.service';
+import { LoadingService } from '../../../shared/services/loading.service';
+import { Quote } from '../../../shared/models/quote.model';
 import { Subscription } from 'rxjs';
 
 @Component({

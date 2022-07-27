@@ -1,17 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Observable } from 'rxjs';
 
 import { Router } from '@angular/router';
-import { AuthService } from './auth.service';
-import { LoadingService } from '../shared/loading-spinner/loading.service';
+import { AuthService } from '../../services/auth.service';
+import { LoadingService } from '../../../shared/services/loading.service';
 
 @Component({
   selector: 'app-auth',
   templateUrl: './auth.component.html',
   styleUrls: ['./auth.component.scss'],
 })
-export class AuthComponent implements OnInit {
+export class AuthComponent {
   isLogin = true;
   error = null;
 
@@ -20,8 +20,6 @@ export class AuthComponent implements OnInit {
     private router: Router,
     public loadingService: LoadingService
   ) {}
-
-  ngOnInit(): void {}
 
   switchAuthMode() {
     this.isLogin = !this.isLogin;

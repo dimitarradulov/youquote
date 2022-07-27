@@ -1,9 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 
-import { LoadingService } from '../shared/loading-spinner/loading.service';
-import { Quote } from '../shared/models/quote.model';
-import { QuotesService } from './quotes.service';
+import { Quote } from 'src/app/shared/models/quote.model';
+import { LoadingService } from 'src/app/shared/services/loading.service';
+import { QuotesService } from '../../services/quotes.service';
 
 @Component({
   selector: 'app-quotes',

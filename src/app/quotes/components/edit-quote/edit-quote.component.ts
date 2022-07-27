@@ -3,9 +3,9 @@ import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 
-import { Quote } from '../shared/models/quote.model';
-import { QuotesService } from '../quotes/quotes.service';
-import { LoadingService } from '../shared/loading-spinner/loading.service';
+import { Quote } from '../../../shared/models/quote.model';
+import { QuotesService } from '../../services/quotes.service';
+import { LoadingService } from '../../../shared/services/loading.service';
 
 @Component({
   selector: 'app-edit-quote',

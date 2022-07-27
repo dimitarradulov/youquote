@@ -5,8 +5,8 @@ import { BehaviorSubject } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { environment } from 'src/environments/environment';
-import { AuthService } from '../auth/auth.service';
-import { Quote } from '../shared/models/quote.model';
+import { AuthService } from '../../auth/services/auth.service';
+import { Quote } from '../../shared/models/quote.model';
 
 @Injectable({
   providedIn: 'root',
