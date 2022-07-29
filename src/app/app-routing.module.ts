@@ -7,6 +7,10 @@ const routes: Routes = [
     redirectTo: 'quotes',
     pathMatch: 'full',
   },
+  {
+    path: 'sign-in',
+    loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule),
+  },
 ];
 
 @NgModule({
