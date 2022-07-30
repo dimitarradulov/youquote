@@ -1,0 +1,55 @@
+{
+  "navigation": {
+    "quotes": {
+      "all": "Todas las Citas",
+      "my": "Mis Citas",
+      "add": "Agregar Cotización"
+    },
+    "auth": {
+      "signIn": "Iniciar Sesión",
+      "logout": "Cerrar Sesión"
+    }
+  },
+  "page": {
+    "quotes": {
+      "all": {
+        "quoteNum": "Cotizar #{{ quoteNumber }}",
+        "details": "Ver Detalles",
+        "noQuotes": "¡No hay comillas!"
+      },
+      "my": {
+        "edit": "Editar",
+        "delete": "Borrar"
+      },
+      "addOrEdit": {
+        "author": "Autor",
+        "content": "Contenido",
+        "create": "Agregar Cotización",
+        "edit": "Editar Cotización",
+        "invalidAuthor": "¡Ingrese un autor válido (al menos 2 caracteres)!",
+        "invalidContent": "¡Contenido de cita no válido (al menos 20 caracteres)!"
+      },
+      "details": {
+        "like": "Me Gusta",
+        "likes": "Gustos"
+      }
+    },
+    "auth": {
+      "login": "Acceso",
+      "signUp": "Inscribirse",
+      "email": "Dirección de Correo Electrónico",
+      "password": "Clave",
+      "confirmPassword": "Confirmar Contraseña",
+      "switchSignUp": "Cambiar Para Registrarse",
+      "switchLogin": "Cambiar Para Iniciar Sesión",
+      "validEmail": "¡Introduzca una dirección de correo electrónico válida!",
+      "validPassword": "¡Ingrese una contraseña válida (al menos 6 caracteres)!",
+      "validConfirmPassword": "¡La contraseña no coincide o está vacía!"
+    }
+  },
+  "modal": {
+    "confirmMsg": "Estas seguro?",
+    "confirm": "Sí",
+    "cancel": "Cancelar"
+  }
+}

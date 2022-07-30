@@ -1,5 +1,5 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Component, OnInit } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 
 import { AuthService } from '../auth/services/auth.service';
 
@@ -8,24 +8,31 @@ import { AuthService } from '../auth/services/auth.service';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })
-export class HeaderComponent implements OnInit, OnDestroy {
+export class HeaderComponent implements OnInit {
   isNavbarCollapsed = false;
   isAuth = false;
-  authSubscribtion: Subscription;
+  language: string;
 
-  constructor(private authService: AuthService) {}
+  constructor(
+    private authService: AuthService,
+    private translateService: TranslateService
+  ) {}
 
   ngOnInit(): void {
-    this.authSubscribtion = this.authService.user.subscribe((userData) => {
-      this.isAuth = !!userData;
-    });
+    this.authService.user.subscribe((userData) => (this.isAuth = !!userData));
+
+    this.language = localStorage.getItem('lang') || 'en';
   }
 
   onLogout() {
     this.authService.logout();
   }
 
-  ngOnDestroy(): void {
-    this.authSubscribtion.unsubscribe();
+  onLangChange(event: Event) {
+    const target = event.target as HTMLInputElement;
+
+    localStorage.setItem('lang', target.value);
+
+    this.translateService.use(target.value);
   }
 }

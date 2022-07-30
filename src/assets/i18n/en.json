@@ -1,0 +1,55 @@
+{
+  "navigation": {
+    "quotes": {
+      "all": "All Quotes",
+      "my": "My Quotes",
+      "add": "Add Quote"
+    },
+    "auth": {
+      "signIn": "Sign In",
+      "logout": "Logout"
+    }
+  },
+  "page": {
+    "quotes": {
+      "all": {
+        "quoteNum": "Quote #{{ quoteNumber }}",
+        "details": "View Details",
+        "noQuotes": "There are no quotes!"
+      },
+      "my": {
+        "edit": "Edit",
+        "delete": "Delete"
+      },
+      "addOrEdit": {
+        "author": "Author",
+        "content": "Content",
+        "create": "Add Quote",
+        "edit": "Edit Quote",
+        "invalidAuthor": "Enter a valid author (at least 2 characters)!",
+        "invalidContent": "Invalid quote content (at least 20 characters)!"
+      },
+      "details": {
+        "like": "Like",
+        "likes": "Likes"
+      }
+    },
+    "auth": {
+      "login": "Login",
+      "signUp": "Sign Up",
+      "email": "Email address",
+      "password": "Password",
+      "confirmPassword": "Confirm Password",
+      "switchSignUp": "Switch To Sign Up",
+      "switchLogin": "Switch To Login",
+      "validEmail": "Enter a valid email address!",
+      "validPassword": "Enter a valid password (at least 6 characters)!",
+      "validConfirmPassword": "Password does not match or empty!"
+    }
+  },
+  "modal": {
+    "confirmMsg": "Are you sure?",
+    "confirm": "Yes",
+    "cancel": "Cancel"
+  }
+}

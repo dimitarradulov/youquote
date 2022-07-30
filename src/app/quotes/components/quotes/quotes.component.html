@@ -2,12 +2,14 @@
   <li *ngFor="let quote of quotes; let i = index" class="mb-4">
     <app-single-quote [quote]="quote">
       <div class="d-flex justify-content-between">
-        <span class="align-self-center">Quote #{{ i + 1 }}</span>
+        <span class="align-self-center">{{
+          "page.quotes.all.quoteNum" | translate: { quoteNumber: i + 1 }
+        }}</span>
         <button
           class="btn btn-sm btn-outline-light"
           [routerLink]="[quote.id, 'details']"
         >
-          View Details
+          {{ "page.quotes.all.details" | translate }}
         </button>
       </div>
     </app-single-quote>
@@ -21,4 +23,6 @@
   [error]="error"
 ></app-error>
 
-<h1 class="h5 text-center" *ngIf="!quotes">There are no quotes!</h1>
+<h1 class="h5 text-center" *ngIf="!quotes">
+  {{ "page.quotes.all.noQuotes" | translate }}
+</h1>

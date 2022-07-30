@@ -1,7 +1,9 @@
 <h2 class="h3 fw-bold mb-4">Add a Quote</h2>
 <form #addQuoteForm="ngForm" (submit)="onFormSubmit(addQuoteForm)">
   <div class="mb-3">
-    <label for="email" class="form-label">Author</label>
+    <label for="author" class="form-label">{{
+      "page.quotes.addOrEdit.author" | translate
+    }}</label>
     <input
       type="text"
       class="form-control"
@@ -16,11 +18,13 @@
       *ngIf="!author.valid && author.touched"
       class="text-danger error-tooltip"
     >
-      Enter a valid author (at least 2 characters)!
+      {{ "page.quotes.addOrEdit.invalidAuthor" | translate }}
     </p>
   </div>
   <div class="mb-3">
-    <label for="quote" class="form-label">Content</label>
+    <label for="quote" class="form-label">{{
+      "page.quotes.addOrEdit.content" | translate
+    }}</label>
     <textarea
       id="content"
       name="content"
@@ -35,7 +39,7 @@
       *ngIf="!content.valid && content.touched"
       class="text-danger error-tooltip"
     >
-      Invalid quote content (at least 20 characters)!
+      {{ "page.quotes.addOrEdit.invalidContent" | translate }}
     </p>
   </div>
   <div *ngIf="!(loadingService.isLoading | async); else loading" class="mt-4">
@@ -44,7 +48,7 @@
       class="btn btn-dark me-3"
       [disabled]="!addQuoteForm.valid"
     >
-      Add Quote
+      {{ "page.quotes.addOrEdit.create" | translate }}
     </button>
   </div>
   <ng-template #loading>

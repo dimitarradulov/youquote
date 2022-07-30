@@ -22,7 +22,7 @@
         routerLinkActive="fw-bold"
         [routerLinkActiveOptions]="{ exact: true }"
         class="nav-link px-2 link-dark"
-        >All Quotes</a
+        >{{ "navigation.quotes.all" | translate }}</a
       >
     </li>
     <li>
@@ -31,20 +31,20 @@
         routerLink="/my-quotes"
         routerLinkActive="fw-bold"
         class="nav-link px-2 link-dark"
-        >My Quotes</a
+        >{{ "navigation.quotes.my" | translate }}</a
       >
     </li>
   </ul>
 
-  <div class="col-md-3 text-end">
+  <div class="col-md-3 text-end d-flex justify-content-end gap-2">
     <button
       routerLink="/quotes/add"
       routerLinkActive="active"
       *ngIf="isAuth"
       type="button"
-      class="btn btn-outline-dark me-2"
+      class="btn btn-outline-dark"
     >
-      Add Quote
+      {{ "navigation.quotes.add" | translate }}
     </button>
     <button
       routerLink="/sign-in"
@@ -52,7 +52,7 @@
       type="button"
       class="btn btn-dark"
     >
-      Sign In
+      {{ "navigation.auth.signIn" | translate }}
     </button>
     <button
       *ngIf="isAuth"
@@ -60,7 +60,16 @@
       class="btn btn-dark"
       (click)="onLogout()"
     >
-      Logout
+      {{ "navigation.auth.logout" | translate }}
     </button>
+
+    <select
+      class="form-select form-select-sm"
+      style="max-width: 30%"
+      (change)="onLangChange($event)"
+    >
+      <option value="en" [selected]="language === 'en'">English (EN)</option>
+      <option value="es" [selected]="language === 'es'">Español (ES)</option>
+    </select>
   </div>
 </header>

@@ -7,13 +7,13 @@
             class="btn btn-sm btn-outline-light me-2"
             [routerLink]="['./', quote.id, 'edit']"
           >
-            Edit
+            {{ "page.quotes.my.edit" | translate }}
           </button>
           <button
             class="btn btn-sm btn-outline-danger"
             (click)="openModal(modal, quote.id!)"
           >
-            Delete
+            {{ "page.quotes.my.delete" | translate }}
           </button>
         </div>
       </app-single-quote>
@@ -31,7 +31,9 @@
 
 <ng-template #modal let-c="close" let-d="dismiss">
   <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">Are you sure?</h4>
+    <h4 class="modal-title" id="modal-basic-title">
+      {{ "modal.confirmMsg" | translate }}
+    </h4>
     <button
       type="button"
       class="btn-close"
@@ -41,10 +43,10 @@
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-outline-dark" (click)="c('yes')">
-      Yes
+      {{ "modal.confirm" | translate }}
     </button>
     <button type="button" class="btn btn-dark" (click)="d('Cross click')">
-      Cancel
+      {{ "modal.cancel" | translate }}
     </button>
   </div>
 </ng-template>

@@ -6,14 +6,16 @@
   <app-error *ngIf="error" [error]="error"></app-error>
   <form #editQuote="ngForm" (ngSubmit)="onEdit(editQuote)">
     <div class="mb-3">
-      <label for="email" class="form-label">Author</label>
+      <label for="email" class="form-label">{{
+        "page.quotes.addOrEdit.author" | translate
+      }}</label>
       <input
         type="text"
         class="form-control"
         id="author"
         name="author"
         #author="ngModel"
-        [ngModel]="quote?.author ?? ''"
+        [ngModel]="quote.author"
         required
         minlength="2"
       />
@@ -21,18 +23,20 @@
         *ngIf="!author.valid && author.touched"
         class="text-danger error-tooltip"
       >
-        Enter a valid author (at least 2 characters)!
+        {{ "page.quotes.addOrEdit.invalidAuthor" | translate }}
       </p>
     </div>
     <div class="mb-3">
-      <label for="quote" class="form-label">Content</label>
+      <label for="quote" class="form-label">{{
+        "page.quotes.addOrEdit.content" | translate
+      }}</label>
       <textarea
         id="content"
         name="content"
         class="form-control"
         rows="5"
         #content="ngModel"
-        [ngModel]="quote?.content ?? ''"
+        [ngModel]="quote.content"
         required
         minlength="20"
       >
@@ -41,7 +45,7 @@
         *ngIf="!content.valid && content.touched"
         class="text-danger error-tooltip"
       >
-        Invalid quote content (at least 20 characters)!
+        {{ "page.quotes.addOrEdit.invalidContent" | translate }}
       </p>
     </div>
     <div *ngIf="!(loadingService.isLoading | async); else loading" class="mt-4">
@@ -50,7 +54,7 @@
         class="btn btn-dark me-3"
         [disabled]="!editQuote.valid"
       >
-        Edit Quote
+        {{ "page.quotes.addOrEdit.edit" | translate }}
       </button>
     </div>
     <ng-template #loading>
