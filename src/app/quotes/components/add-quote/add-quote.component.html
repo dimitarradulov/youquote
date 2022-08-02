@@ -1,4 +1,6 @@
-<h2 class="h3 fw-bold mb-4">Add a Quote</h2>
+<h2 class="h3 fw-bold mb-4">
+  {{ "page.quotes.addOrEdit.create" | translate }}
+</h2>
 <form #addQuoteForm="ngForm" (submit)="onFormSubmit(addQuoteForm)">
   <div class="mb-3">
     <label for="author" class="form-label">{{
