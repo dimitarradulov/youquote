@@ -2,7 +2,9 @@
   <app-loading-spinner></app-loading-spinner>
 </ng-template>
 <ng-container *ngIf="!(loadingService.isLoading | async); else loading">
-  <h2 class="h3 fw-bold mb-4">Edit Quote</h2>
+  <h2 class="h3 fw-bold mb-4">
+    {{ "page.quotes.addOrEdit.edit" | translate }}
+  </h2>
   <app-error *ngIf="error" [error]="error"></app-error>
   <form #editQuote="ngForm" (ngSubmit)="onEdit(editQuote)">
     <div class="mb-3">
