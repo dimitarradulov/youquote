@@ -31,7 +31,12 @@
       },
       "details": {
         "like": "Me Gusta",
-        "likes": "Gustos"
+        "likes": "Gustos",
+        "comment": "Comentario",
+        "comments": "Comentarios",
+        "addComment": "Agrega tu comentario",
+        "submitComment": "Enviar",
+        "requiredComment": "¡Este campo es obligatorio!"
       }
     },
     "auth": {

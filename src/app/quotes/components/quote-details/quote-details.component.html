@@ -35,7 +35,7 @@
 <ng-container *ngIf="commentService.commentsChange | async as comments">
   <hr />
 
-  <h2 class="h5 mb-4">Comments</h2>
+  <h2 class="h5 mb-4">{{ "page.quotes.details.comments" | translate }}</h2>
 
   <ul class="list-unstyled">
     <li *ngFor="let comment of comments">

@@ -1,6 +1,8 @@
 <form #commentForm="ngForm" (ngSubmit)="onSubmit(commentForm)">
   <div class="mb-3">
-    <label class="fw-bold" for="comment">Add your comment</label>
+    <label class="fw-bold" for="comment">{{
+      "page.quotes.details.addComment" | translate
+    }}</label>
     <textarea
       id="comment"
       name="comment"
@@ -11,11 +13,11 @@
       required
     ></textarea>
     <p *ngIf="!comment.valid && comment.touched" class="text-danger small">
-      This field is required!
+      {{ "page.quotes.details.requiredComment" | translate }}
     </p>
   </div>
 
   <button type="submit" class="btn btn-dark" [disabled]="!commentForm.valid">
-    Submit
+    {{ "page.quotes.details.submitComment" | translate }}
   </button>
 </form>

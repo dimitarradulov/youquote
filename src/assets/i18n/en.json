@@ -31,7 +31,12 @@
       },
       "details": {
         "like": "Like",
-        "likes": "Likes"
+        "likes": "Likes",
+        "comment": "Comment",
+        "comments": "Comments",
+        "addComment": "Add your comment",
+        "submitComment": "Submit",
+        "requiredComment": "This field is required!"
       }
     },
     "auth": {
