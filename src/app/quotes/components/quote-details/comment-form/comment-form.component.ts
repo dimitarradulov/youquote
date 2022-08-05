@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { slice } from 'cypress/types/lodash';
 
 import { AuthService } from 'src/app/auth/services/auth.service';
 import {

@@ -1,7 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { take } from 'rxjs/operators';
 
 import { User } from 'src/app/shared/models/user.model';
 import { Quote } from 'src/app/shared/models/quote.model';
@@ -9,7 +8,7 @@ import { AuthService } from 'src/app/auth/services/auth.service';
 import { LoadingService } from 'src/app/shared/services/loading.service';
 import { QuotesService } from '../../services/quotes.service';
 import { LikeService } from '../../services/like.service';
-import { CommentService, Comment } from '../../services/comment.service';
+import { CommentService } from '../../services/comment.service';
 
 @Component({
   selector: 'app-quote-details',
