@@ -8,25 +8,31 @@ import { AuthService } from 'src/app/auth/services/auth.service';
 import { LoadingService } from 'src/app/shared/services/loading.service';
 import { QuotesService } from '../../services/quotes.service';
 import { LikeService } from '../../services/like.service';
+import { CommentService } from '../../services/comment.service';
 
 @Component({
   selector: 'app-quote-details',
   templateUrl: './quote-details.component.html',
   styleUrls: ['./quote-details.component.scss'],
+  providers: [CommentService],
 })
 export class QuoteDetailsComponent implements OnInit, OnDestroy {
   quote: Quote;
   quoteId: string;
   liked: boolean;
   likes = 0;
+  commentClicked = false;
   user: User | null;
   error = null;
-  subsciption: Subscription;
+  quoteSubs: Subscription;
+  likesSubs: Subscription;
+  commentsSubs: Subscription;
 
   constructor(
     private quotesService: QuotesService,
     private route: ActivatedRoute,
     private likeService: LikeService,
+    public commentService: CommentService,
     public authService: AuthService,
     public loadingService: LoadingService
   ) {}
@@ -37,7 +43,7 @@ export class QuoteDetailsComponent implements OnInit, OnDestroy {
     this.user = this.authService.user.getValue();
 
     this.error = null;
-    this.subsciption = this.quotesService.getOne(this.quoteId).subscribe({
+    this.quoteSubs = this.quotesService.getOne(this.quoteId).subscribe({
       next: (quoteData) => {
         this.quote = quoteData;
       },
@@ -49,21 +55,30 @@ export class QuoteDetailsComponent implements OnInit, OnDestroy {
       },
     });
 
-    this.likeService.getLikesForSingleQuote(this.quoteId).subscribe((likes) => {
-      this.likes = likes.length;
-      this.liked = likes.some((uid) => uid === this.user?.id);
-    });
+    this.likesSubs = this.likeService
+      .getLikesForSingleQuote(this.quoteId)
+      .subscribe((likes) => {
+        this.likes = likes.length;
+        this.liked = likes.some((uid) => uid === this.user?.id);
+      });
+
+    this.commentsSubs = this.commentService.get(this.quoteId).subscribe();
   }
 
   ngOnDestroy(): void {
-    this.subsciption.unsubscribe();
+    this.quoteSubs.unsubscribe();
+    this.likesSubs.unsubscribe();
+    this.commentsSubs.unsubscribe();
   }
 
   onLikeHandler(num: number) {
     this.likes += num;
+
     let quoteLikes = this.likeService.quoteLikes.getValue();
+
     if (this.liked) quoteLikes.push(<string>this.user?.id);
     else quoteLikes = quoteLikes.filter((uid) => uid !== <string>this.user?.id);
+
     this.likeService.modifyLikes(this.quoteId, quoteLikes);
   }
 }

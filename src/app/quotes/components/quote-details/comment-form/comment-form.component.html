@@ -1,0 +1,23 @@
+<form #commentForm="ngForm" (ngSubmit)="onSubmit(commentForm)">
+  <div class="mb-3">
+    <label class="fw-bold" for="comment">{{
+      "page.quotes.details.addComment" | translate
+    }}</label>
+    <textarea
+      id="comment"
+      name="comment"
+      ngModel
+      #comment="ngModel"
+      class="form-control"
+      rows="3"
+      required
+    ></textarea>
+    <p *ngIf="!comment.valid && comment.touched" class="text-danger small">
+      {{ "page.quotes.details.requiredComment" | translate }}
+    </p>
+  </div>
+
+  <button type="submit" class="btn btn-dark" [disabled]="!commentForm.valid">
+    {{ "page.quotes.details.submitComment" | translate }}
+  </button>
+</form>

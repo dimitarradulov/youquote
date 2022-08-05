@@ -21,10 +21,25 @@
   </div>
   <div *ngIf="authService.user | async" class="card-footer">
     <like [(liked)]="liked" (onLike)="onLikeHandler($event)"></like>
+    <comment [(clicked)]="commentClicked"></comment>
   </div>
 </div>
 
-<div class="small">
+<div class="small mb-3">
   <span class="fw-bold">{{ likes }} </span>
   <span class="text-muted">{{ "page.quotes.details.likes" | translate }}</span>
 </div>
+
+<comment-form *ngIf="commentClicked" [quoteId]="quoteId"></comment-form>
+
+<ng-container *ngIf="commentService.commentsChange | async as comments">
+  <hr />
+
+  <h2 class="h5 mb-4">{{ "page.quotes.details.comments" | translate }}</h2>
+
+  <ul class="list-unstyled">
+    <li *ngFor="let comment of comments">
+      <single-comment [commentData]="comment"></single-comment>
+    </li>
+  </ul>
+</ng-container>
