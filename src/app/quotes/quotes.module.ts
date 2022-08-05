@@ -13,6 +13,9 @@ import { QuoteDetailsComponent } from './components/quote-details/quote-details.
 import { QuotesComponent } from './components/quotes/quotes.component';
 import { SingleQuoteComponent } from './components/single-quote/single-quote.component';
 import { LikeComponent } from './components/quote-details/like/like.component';
+import { CommentComponent } from './components/quote-details/comment/comment.component';
+import { CommentFormComponent } from './components/quote-details/comment-form/comment-form.component';
+import { SingleCommentComponent } from './components/quote-details/single-comment/single-comment.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +26,9 @@ import { LikeComponent } from './components/quote-details/like/like.component';
     QuotesComponent,
     SingleQuoteComponent,
     LikeComponent,
+    CommentComponent,
+    CommentFormComponent,
+    SingleCommentComponent,
   ],
   imports: [
     CommonModule,

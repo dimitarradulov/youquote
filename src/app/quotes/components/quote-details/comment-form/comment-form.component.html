@@ -1,0 +1,21 @@
+<form #commentForm="ngForm" (ngSubmit)="onSubmit(commentForm)">
+  <div class="mb-3">
+    <label class="fw-bold" for="comment">Add your comment</label>
+    <textarea
+      id="comment"
+      name="comment"
+      ngModel
+      #comment="ngModel"
+      class="form-control"
+      rows="3"
+      required
+    ></textarea>
+    <p *ngIf="!comment.valid && comment.touched" class="text-danger small">
+      This field is required!
+    </p>
+  </div>
+
+  <button type="submit" class="btn btn-dark" [disabled]="!commentForm.valid">
+    Submit
+  </button>
+</form>
